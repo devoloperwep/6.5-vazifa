@@ -1,15 +1,28 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useFetch } from "../hooks/useFetch";
 
 function SingleProduct() {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  useEffect(() => {
-    axios("https://dummyjson.com/product/" + id)
-      .then(({ data }) => setProduct(data))
-      .catch((error) => console.log(error.message));
-  }, [id]);
+  const {
+    data: product,
+    error,
+    isPanding,
+  } = useFetch("https://dummyjson.com/product/" + id);
+  if (isPanding) {
+    return (
+      <div className="grid place-items-center mt-50">
+        <span className="loading loading-spinner text-accent text-lg"></span>
+        <h3 className="text-accent mt-3">Loading...</h3>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <h2 className="text-error text-center mt-10 text-lg">{error}</h2>;
+  }
+  console.log(product);
   return (
     <>
       {product && (
