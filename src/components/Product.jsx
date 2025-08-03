@@ -1,14 +1,21 @@
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../hooks/useGlobalContext";
+import ProductList from "./ProductList";
 
 function Product({ prod }) {
-  const { dispatch } = useGlobalContext();
+  const { dispatch, products } = useGlobalContext();
   const { title, description, category, price, rating, brand, thumbnail } =
     prod;
 
   function hendleSubmit(e) {
     e.preventDefault();
-    dispatch({ type: "ADD_PRODUCT", payload: prod });
+
+    const item = products.find((product) => product.id == prod.id);
+    if (item) {
+      dispatch({ type: "INCREASE_AMOUNT", payload: prod.id });
+    } else {
+      dispatch({ type: "ADD_PRODUCT", payload: { ...prod, amount: 1 } });
+    }
   }
   return (
     <Link

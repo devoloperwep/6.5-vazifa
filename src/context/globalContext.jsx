@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useReducer, createContext } from "react";
 
 export const GlobalContext = createContext();
@@ -8,6 +9,30 @@ const changeState = (state, action) => {
   switch (type) {
     case "ADD_PRODUCT":
       return { ...state, products: [...state.products, payload] };
+    case "INCREASE_AMOUNT":
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          amount.id === payload
+            ? { ...product, amount: product.amount + 1 }
+            : product
+        ),
+      };
+    case "DECREASE_AMOUNT":
+      return {
+        ...state,
+        products: state.products.map((product) =>
+          amount.id === payload
+            ? { ...product, amount: product.amount - 1 }
+            : product
+        ),
+      };
+    case "CHANGE_AMOUNT_PRICE":
+      return {
+        ...state,
+        totalAmount: payload.amount,
+        totalPrice: payload.price,
+      };
     default:
       return state;
   }
@@ -17,8 +42,21 @@ export function GlobalContextProvider({ children }) {
   const [state, dispatch] = useReducer(changeState, {
     user: true,
     products: [],
+    totalAmount: 0,
+    totalPrice: 0,
   });
-  console.log(state.products);
+
+  useEffect(() => {
+    let price = 0;
+    let amount = 0;
+
+    state.products.forEach((product) => {
+      price += product.amount * product.price;
+      amount += product.amount;
+    });
+    dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
+  }, [state.products]);
+  console.log(state);
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}
