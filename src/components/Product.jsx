@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function Product({ prod }) {
+  const { dispatch } = useGlobalContext();
   const { title, description, category, price, rating, brand, thumbnail } =
     prod;
+
+  function hendleSubmit(e) {
+    e.preventDefault();
+    dispatch({ type: "ADD_PRODUCT", payload: prod });
+  }
   return (
     <Link
       to={`/SingleProduct/${prod.id}`}
@@ -22,6 +29,9 @@ function Product({ prod }) {
           <span className="text-lg font-bold text-green-600">${price}</span>
           <span className="text-gray-500">{brand}</span>
         </div>
+        <button className="btn btn-primary" onClick={hendleSubmit}>
+          Add to shop
+        </button>
       </div>
     </Link>
   );

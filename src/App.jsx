@@ -7,9 +7,11 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SingleProduct from "./pages/SingleProduct";
+import { useGlobalContext } from "./hooks/useGlobalContext";
+import { use } from "react";
 
 function App() {
-  let user = false;
+  const { user } = useGlobalContext();
   const routes = createBrowserRouter([
     {
       path: "/",
