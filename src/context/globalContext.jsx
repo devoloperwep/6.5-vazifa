@@ -13,7 +13,7 @@ const changeState = (state, action) => {
       return {
         ...state,
         products: state.products.map((product) =>
-          amount.id === payload
+          product.id === payload
             ? { ...product, amount: product.amount + 1 }
             : product
         ),
@@ -22,7 +22,7 @@ const changeState = (state, action) => {
       return {
         ...state,
         products: state.products.map((product) =>
-          amount.id === payload
+          product.id === payload
             ? { ...product, amount: product.amount - 1 }
             : product
         ),
