@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useReducer, createContext } from "react";
-
 export const GlobalContext = createContext();
 
 const changeState = (state, action) => {
@@ -33,6 +32,13 @@ const changeState = (state, action) => {
         totalAmount: payload.amount,
         totalPrice: payload.price,
       };
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        products: state.products.filter((product) => {
+          return product.id !== payload;
+        }),
+      };
     default:
       return state;
   }
@@ -56,7 +62,6 @@ export function GlobalContextProvider({ children }) {
     });
     dispatch({ type: "CHANGE_AMOUNT_PRICE", payload: { price, amount } });
   }, [state.products]);
-  console.log(state);
   return (
     <GlobalContext.Provider value={{ ...state, dispatch }}>
       {children}
