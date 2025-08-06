@@ -22,7 +22,6 @@ function SingleProduct() {
   if (error) {
     return <h2 className="text-error text-center mt-10 text-lg">{error}</h2>;
   }
-  console.log(product);
   return (
     <>
       {product && (

@@ -37,14 +37,14 @@ function BasketItem({ product }) {
         <div className="flex items-center gap-2">
           <button
             onClick={increment}
-            className="w-8 h-8 flex items-center justify-center bg-green-500 text-white rounded hover:bg-green-600 transition"
+            className="w-8 h-8 cursor-pointer flex items-center justify-center bg-green-500 text-white rounded hover:bg-green-600 transition"
           >
             +
           </button>
           <span className="text-gray-800 font-semibold">{product.amount}</span>
           <button
             onClick={decrement}
-            className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded hover:bg-red-600 transition"
+            className="w-8 h-8 cursor-pointer flex items-center justify-center bg-red-500 text-white rounded hover:bg-red-600 transition"
           >
             -
           </button>

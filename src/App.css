@@ -1,0 +1,12 @@
+.navbar-link {
+  display: inline-block;
+  position: relative;
+}
+.shop-counter {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  color: aqua;
+  font-weight: bold;
+  z-index: 1;
+}

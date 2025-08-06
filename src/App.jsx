@@ -2,8 +2,16 @@ import { RouterProvider, createBrowserRouter, Navigate } from "react-router";
 import { ProtectedRoutes } from "./components/ProtectedRoutes";
 import { useGlobalContext } from "./hooks/useGlobalContext";
 import MainLayout from "./layout/MainLayout";
-import { About, Contact, Home, SingleProduct } from "./pages";
-import Basket from "./pages/Basket";
+import "./App.css";
+import {
+  About,
+  Contact,
+  Home,
+  SingleProduct,
+  Basket,
+  Login,
+  Register,
+} from "./pages";
 
 function App() {
   const { user } = useGlobalContext();
