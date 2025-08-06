@@ -22,10 +22,11 @@ function BasketItem({ product }) {
       dispatch({ type: "DECREASE_AMOUNT", payload: product.id });
     }
   };
+  console.log(product);
   return (
     <Link
       to={`/singleProduct/${product.id}`}
-      className="block p-4 rounded-lg shadow-md bg-white hover:shadow-lg transition duration-300 px-20"
+      className="block p-4 rounded-lg shadow-md bg-white hover:shadow-lg transition duration-300 px-20 "
     >
       <h3 className="text-lg font-semibold text-gray-800 mb-2">
         {product.title}
@@ -34,6 +35,9 @@ function BasketItem({ product }) {
         <span className="text-gray-600 font-medium ">
           TotalPrice: {formatPrice(product.amount * product.price)}
         </span>
+        <div>
+          <img src={product.thumbnail} alt="" width={50} />
+        </div>
         <div className="flex items-center gap-2">
           <button
             onClick={increment}
