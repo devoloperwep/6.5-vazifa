@@ -47,12 +47,9 @@ function Liked() {
                     onClick={() =>
                       dispatch({ type: "REMOVE_LIKED", payload: item.id })
                     }
-                    className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-200"
+                    className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-200 cursor-pointer"
                   >
                     Remove
-                  </button>
-                  <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-200">
-                    View
                   </button>
                 </div>
               </div>
