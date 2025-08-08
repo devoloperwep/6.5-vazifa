@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function Liked() {
-  const { likedProducts, removeFromLiked } = useGlobalContext();
+  const { likedProducts, dispatch } = useGlobalContext();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
@@ -44,7 +44,9 @@ function Liked() {
                 )}
                 <div className="mt-auto flex gap-3">
                   <button
-                    onClick={() => removeFromLiked(item.id)}
+                    onClick={() =>
+                      dispatch({ type: "REMOVE_LIKED", payload: item.id })
+                    }
                     className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg transition duration-200"
                   >
                     Remove
