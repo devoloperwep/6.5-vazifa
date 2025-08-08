@@ -1,11 +1,31 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../hooks/useGlobalContext";
-import ProductList from "./ProductList";
-
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 function Product({ prod }) {
-  const { dispatch, products } = useGlobalContext();
+  const { dispatch, products, likedProducts } = useGlobalContext();
+  console.log(likedProducts);
   const { title, description, category, price, rating, brand, thumbnail } =
     prod;
+
+  const [alreadyLiked, setAlreadyLiked] = useState(false);
+
+  const addLiked = (e) => {
+    e.preventDefault();
+    dispatch({ type: "ADD_LIKED", payload: prod });
+    setAlreadyLiked(true);
+  };
+  const removeLiked = (e) => {
+    e.preventDefault();
+    setAlreadyLiked(false);
+    dispatch({ type: "REMOVE_LIKED", payload: prod.id });
+  };
+
+  useEffect(() => {
+    const item = likedProducts.find((p) => p.id == prod.id);
+    if (item) setAlreadyLiked(true);
+  }, []);
 
   function hendleSubmit(e) {
     e.preventDefault();
@@ -36,9 +56,25 @@ function Product({ prod }) {
           <span className="text-lg font-bold text-green-600">${price}</span>
           <span className="text-gray-500">{brand}</span>
         </div>
-        <button className="btn btn-primary" onClick={hendleSubmit}>
-          Add to shop
-        </button>
+        <div className="flex ">
+          <button className="btn btn-primary" onClick={hendleSubmit}>
+            Add to shop
+          </button>
+          {alreadyLiked && (
+            <button onClick={removeLiked} className="cursor-pointer text-xl">
+              <FaHeart />
+            </button>
+          )}
+          {!alreadyLiked && (
+            <button
+              onClickCapture={removeLiked}
+              onClick={addLiked}
+              className="cursor-pointer text-xl"
+            >
+              <FaRegHeart />
+            </button>
+          )}
+        </div>
       </div>
     </Link>
   );

@@ -21,7 +21,11 @@ function Navbar() {
             {<FaShoppingCart size={28} />}
           </NavLink>
           <label className="swap swap-rotate">
-            <input type="checkbox" onClick={changeTheme} />
+            <input
+              type="checkbox"
+              onChange={changeTheme}
+              defaultChecked={theme == "dark"}
+            />
 
             {
               <svg
