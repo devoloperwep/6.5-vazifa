@@ -12,6 +12,7 @@ import {
   Login,
   Register,
 } from "./pages";
+import Liked from "./pages/Liked";
 
 function App() {
   const { user } = useGlobalContext();
@@ -43,6 +44,10 @@ function App() {
         {
           path: "/basket",
           element: <Basket />,
+        },
+        {
+          path: "/liked",
+          element: <Liked />,
         },
       ],
     },

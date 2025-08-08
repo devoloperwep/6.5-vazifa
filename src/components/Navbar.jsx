@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function Navbar() {
@@ -16,7 +16,10 @@ function Navbar() {
           <NavLink to="/contact">Contact</NavLink>
         </div>
         <div className="navbar-end gap-5">
-          <NavLink className="navbar-link" to="/basket">
+          <NavLink to="/liked">
+            <FaHeart className="cursor-pointer" size={25} />
+          </NavLink>
+          <NavLink className="navbar-link flex" to="/basket">
             <span className="shop-counter">{totalAmount}</span>
             {<FaShoppingCart size={28} />}
           </NavLink>

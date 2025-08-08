@@ -5,7 +5,6 @@ import { useGlobalContext } from "../hooks/useGlobalContext";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 function Product({ prod }) {
   const { dispatch, products, likedProducts } = useGlobalContext();
-  console.log(likedProducts);
   const { title, description, category, price, rating, brand, thumbnail } =
     prod;
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 
 function SingleProduct() {
   const { id } = useParams();
@@ -22,6 +23,7 @@ function SingleProduct() {
   if (error) {
     return <h2 className="text-error text-center mt-10 text-lg">{error}</h2>;
   }
+
   return (
     <>
       {product && (
