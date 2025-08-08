@@ -40,7 +40,7 @@ function Product({ prod }) {
   return (
     <Link
       to={`/SingleProduct/${prod.id}`}
-      className="block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 border border-gray-200"
+      className="block bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300 border border-gray-200 relative"
     >
       <img src={thumbnail} alt={title} className="w-full h-52 object-cover" />
       <div className="p-4">
@@ -56,24 +56,26 @@ function Product({ prod }) {
           <span className="text-lg font-bold text-green-600">${price}</span>
           <span className="text-gray-500">{brand}</span>
         </div>
-        <div className="flex ">
+        <div className="flex">
           <button className="btn btn-primary" onClick={hendleSubmit}>
             Add to shop
           </button>
-          {alreadyLiked && (
-            <button onClick={removeLiked} className="cursor-pointer text-xl">
-              <FaHeart />
-            </button>
-          )}
-          {!alreadyLiked && (
-            <button
-              onClickCapture={removeLiked}
-              onClick={addLiked}
-              className="cursor-pointer text-xl"
-            >
-              <FaRegHeart />
-            </button>
-          )}
+          <div className="flex absolute top-3 right-3">
+            {alreadyLiked && (
+              <button onClick={removeLiked} className="cursor-pointer text-xl">
+                <FaHeart />
+              </button>
+            )}
+            {!alreadyLiked && (
+              <button
+                onClickCapture={removeLiked}
+                onClick={addLiked}
+                className="cursor-pointer text-xl"
+              >
+                <FaRegHeart />
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </Link>
